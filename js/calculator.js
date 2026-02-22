@@ -1,4 +1,6 @@
-// Constants
+// Calculator Module
+// Handles all attendance and bunking calculations
+
 const MIN_CRITERIA = 75;
 const COLOR_WARNING = "#d1bf35";
 const COLOR_ERROR = "red";
@@ -11,50 +13,20 @@ const elements = {
   displayHB: document.getElementById("displayHB"),
 };
 
-// Tab switching function
-function switchTab(tabName) {
-  const tabContents = document.querySelectorAll(".tabContent");
-  const tabButtons = document.querySelectorAll(".tabButton");
-  
-  // Hide all tabs
-  tabContents.forEach(tab => tab.classList.remove("active"));
-  tabButtons.forEach(btn => btn.classList.remove("active"));
-  
-  // Show selected tab
-  document.getElementById(tabName).classList.add("active");
-  event.target.classList.add("active");
-}
-
-// Image preview for timetable upload
-document.addEventListener("DOMContentLoaded", function() {
-  const fileInput = document.getElementById("timetableUpload");
-  if (fileInput) {
-    fileInput.addEventListener("change", function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          const imagePreview = document.getElementById("imagePreview");
-          imagePreview.innerHTML = `<img src="${event.target.result}" alt="Timetable Preview">`;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
-});
-
-// Static functions
-function attendancePercentage(totalHoursTaken, totalHoursAttended) {
+// Calculate attendance percentage
+export function attendancePercentage(totalHoursTaken, totalHoursAttended) {
   return (totalHoursAttended / totalHoursTaken) * 100;
 }
 
-function bunkableHours(totalHours, totalHoursTaken, totalHoursAttended) {
+// Calculate bunkable hours (hours you can skip without dropping below 75%)
+export function bunkableHours(totalHours, totalHoursTaken, totalHoursAttended) {
   const hoursNotAttended = totalHoursTaken - totalHoursAttended;
   const totalBunkable = totalHours * 0.25;
   return totalBunkable - hoursNotAttended;
 }
 
-function needHours(totalHours, totalHoursTaken, totalHoursAttended) {
+// Calculate hours needed to reach 75% attendance
+export function needHours(totalHours, totalHoursTaken, totalHoursAttended) {
   let hoursNeeded = 0;
   let finalPercentage = (totalHoursAttended / totalHoursTaken) * 100;
 
@@ -65,11 +37,17 @@ function needHours(totalHours, totalHoursTaken, totalHoursAttended) {
   return hoursNeeded;
 }
 
-// Dynamic function
-function calculate() {
+// Main calculation function - orchestrates all calculations
+export function calculate() {
   const selectionValue = document.getElementById("totalVsLeft").value;
   const totalHoursTaken = Number(document.getElementById("totalHoursTaken").value);
   const totalHoursAttended = Number(document.getElementById("totalHoursAttended").value);
+  
+  // Input validation
+  if (!totalHoursTaken || isNaN(totalHoursTaken) || isNaN(totalHoursAttended)) {
+    alert("Please enter valid numbers for total hours taken/attended.");
+    return;
+  }
   
   let totalHours, hoursLeft;
   

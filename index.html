@@ -23,8 +23,8 @@
 
         <!-- Tab Navigation -->
         <div id="tabNavigation">
-            <button class="tabButton active" onclick="switchTab('attendance')">Quick Calculate</button>
-            <button class="tabButton" onclick="switchTab('timetable')">Advanced</button>
+            <button class="tabButton active" onclick="switchTab('attendance', event)">Quick Calculate</button>
+            <button class="tabButton" onclick="switchTab('timetable', event)">Advanced</button>
         </div>
 
         <!-- Attendance Tab -->
@@ -71,7 +71,17 @@
             <div id="timetableDiv">
                 <h2 style="margin-top: 2rem;">Upload Your Timetable</h2>
                 <div id="uploadSection">
-                    <input type="file" id="timetableUpload" accept="image/*" class="fileInput">
+                    <div id="dropZone" class="drop-zone">
+                        <div class="drop-zone-content">
+                            <p class="drop-zone-text">Drag and drop your timetable image here<br><span style="font-size: 0.8em; opacity: 0.8;">or tap to select</span></p>
+                            <svg class="drop-zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <input type="file" id="timetableUpload" accept="image/*" class="fileInput">
+                    </div>
                     <div id="imagePreview"></div>
                 </div>
             </div>
@@ -92,7 +102,7 @@
                     Use the tool wisely and don't get us into trouble,&#x1F64F; <br>
                     Thank you</p>
         </div>
-        <script src="script.js"></script>
+        <script type="module" src="js/main.js"></script>
     </body>
     
 </html>

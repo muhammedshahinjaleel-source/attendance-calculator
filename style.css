@@ -110,12 +110,57 @@ body{
     text-align: center;
 }
 
-.fileInput {
-    padding: 1rem;
-    font-family: "Bitcount Grid Single";
-    font-size: 1rem;
+.drop-zone {
+    border: 3px dashed #d1bf35;
+    border-radius: 10px;
+    padding: 3rem 2rem;
+    background-color: rgba(40, 76, 96, 0.3);
     cursor: pointer;
-    margin: 2rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.drop-zone:hover {
+    background-color: rgba(40, 76, 96, 0.5);
+    border-color: #ffffff;
+    transform: scale(1.02);
+}
+
+.drop-zone.drag-over {
+    background-color: rgba(209, 191, 53, 0.2);
+    border-color: #d1bf35;
+    box-shadow: 0px 0px 20px rgba(209, 191, 53, 0.3);
+    transform: scale(1.05);
+}
+
+.drop-zone-content {
+    text-align: center;
+    pointer-events: none;
+}
+
+.drop-zone-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    color: #d1bf35;
+    opacity: 0.8;
+}
+
+.drop-zone-text {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.fileInput {
+    display: none;
 }
 
 #imagePreview {
@@ -335,4 +380,259 @@ hr{
 
     font-weight: 600;
 
+}
+
+/* ===== GEMINI TIMETABLE ANALYSIS STYLES ===== */
+
+.api-key-info {
+    background-color: rgba(58, 90, 112, 0.5);
+    border-left: 4px solid #d1bf35;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    max-width: 600px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.api-key-info a {
+    color: #d1bf35;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.api-key-info a:hover {
+    text-decoration: underline;
+}
+
+#analyzeButton, .analyze-button {
+    background-color: #d1bf35;
+    color: #000000;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-family: "Bitcount Grid Single";
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-shadow: none;
+}
+
+#analyzeButton:hover:not(:disabled), .analyze-button:hover:not(:disabled) {
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(209, 191, 53, 0.5);
+}
+
+#analyzeButton:disabled, .analyze-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.timetable-results {
+    background-color: rgba(40, 76, 96, 0.3);
+    border: 2px solid #d1bf35;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.results-header {
+    text-align: center;
+    border-bottom: 2px solid #d1bf35;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.results-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #d1bf35;
+    font-size: 1.5rem;
+}
+
+.semester-info, .total-hours {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.total-hours strong {
+    color: #d1bf35;
+    font-weight: 700;
+}
+
+.timetable-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.timetable-table thead {
+    background-color: rgba(209, 191, 53, 0.2);
+    border-bottom: 2px solid #d1bf35;
+}
+
+.timetable-table th {
+    padding: 1rem;
+    text-align: left;
+    color: #d1bf35;
+    font-weight: 600;
+    padding: 0.8rem;
+    background-color: rgba(209, 191, 53, 0.15);
+}
+
+.timetable-table td {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(209, 191, 53, 0.2);
+    color: #ffffff;
+}
+
+.timetable-table tbody tr:hover {
+    background-color: rgba(209, 191, 53, 0.1);
+}
+
+.timetable-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.parsing-errors {
+    background-color: rgba(206, 34, 34, 0.2);
+    border: 2px solid #ce2222;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+}
+
+.parsing-errors h4 {
+    color: #ce2222;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.parsing-errors ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #ffffff;
+}
+
+.parsing-errors li {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+.timetable-notes {
+    background-color: rgba(139, 24, 24, 0.1);
+    border-left: 4px solid #d1bf35;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 5px;
+}
+
+.timetable-notes p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(209, 191, 53, 0.3);
+}
+
+.use-schedule-button, .clear-storage-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-family: "Bitcount Grid Single";
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.use-schedule-button {
+    background-color: #d1bf35;
+    color: #000000;
+}
+
+.use-schedule-button:hover {
+    background-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(209, 191, 53, 0.5);
+}
+
+.clear-storage-button {
+    background-color: rgba(206, 34, 34, 0.6);
+    color: #ffffff;
+}
+
+.clear-storage-button:hover {
+    background-color: #ce2222;
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(206, 34, 34, 0.5);
+}
+
+.error-message {
+    color: #ce2222;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(206, 34, 34, 0.2);
+    border-radius: 5px;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.success-message {
+    color: #00cc00;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 204, 0, 0.2);
+    border-radius: 5px;
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+}
+
+/* Responsive design for timetable */
+@media (max-width: 768px) {
+    .timetable-table {
+        font-size: 0.85rem;
+    }
+    
+    .timetable-table th, .timetable-table td {
+        padding: 0.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .use-schedule-button, .clear-storage-button {
+        width: 100%;
+    }
+    
+    .timetable-results {
+        padding: 1rem;
+    }
 }
