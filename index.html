@@ -20,40 +20,61 @@
             <h4 id="credit"> by <a class="links" href="https://github.com/subhombaruah" target="_blank"><span class="special">SimpleSide</span></a> and <a class="links" href="https://github.com/shahinJay" target="_blank"><span class="special">Eternus</span></a></h4>
         </div>
         <img src="background-plate.jpg" id="background-plate" alt="background-plate">
-        <div id="formDiv">
-            <form id="mainForm">
-                <fieldset>
 
-                                Total hours taken :
-
-                                <input type="text" id="totalHoursTaken" value="0" class="textBoxes">
-
-                                Total hours attended :
-
-                                <input type="text" id="totalHoursAttended" value="0" class="textBoxes">
-
-                                <select name="totalVsLeft" id="totalVsLeft" value="leftKnown">
-                                    <option value="leftKnown">
-                                        Hours left
-                                    </option>
-                                    <option value="totalKnown">
-                                        Total hours
-                                    </option>
-                                </select>
-                                :
-                                <input type="text" id="knownValue" value="" class="textBoxes" autofocus> 
-
-                                <a href="#calculateButton"><button type="button" id="calculateButton" onclick="calculate()">Calculate</button></a>
-
-
-                </fieldset>
-            </form>
+        <!-- Tab Navigation -->
+        <div id="tabNavigation">
+            <button class="tabButton active" onclick="switchTab('attendance')">Attendance Calculator</button>
+            <button class="tabButton" onclick="switchTab('timetable')">Timetable Planner</button>
         </div>
 
-        <div id="displayDiv">
-            Percentage: <h2 id="displayP" class="results">N/A</h2>
-            Hours Needed: <h2 id="displayHN" class="results">N/A</h2>
-            Hours Bunkable: <h2 id="displayHB" class="results">N/A</h2>
+        <!-- Attendance Tab -->
+        <div id="attendance" class="tabContent active">
+            <div id="formDiv">
+                <form id="mainForm">
+                    <fieldset>
+
+                        Total hours taken :
+
+                        <input type="text" id="totalHoursTaken" value="0" class="textBoxes">
+
+                        Total hours attended :
+
+                        <input type="text" id="totalHoursAttended" value="0" class="textBoxes">
+
+                        <select name="totalVsLeft" id="totalVsLeft" value="leftKnown">
+                            <option value="leftKnown">
+                                Hours left
+                            </option>
+                            <option value="totalKnown">
+                                Total hours
+                            </option>
+                        </select>
+                        :
+                        <input type="text" id="knownValue" value="" class="textBoxes" autofocus> 
+
+                        <a href="#calculateButton"><button type="button" id="calculateButton" onclick="calculate()">Calculate</button></a>
+
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <div id="displayDiv">
+                Percentage: <h2 id="displayP" class="results">N/A</h2>
+                Hours Needed: <h2 id="displayHN" class="results">N/A</h2>
+                Hours Bunkable: <h2 id="displayHB" class="results">N/A</h2>
+            </div>
+        </div>
+
+        <!-- Timetable Tab -->
+        <div id="timetable" class="tabContent">
+            <div id="timetableDiv">
+                <h2 style="margin-top: 2rem;">Upload Your Timetable</h2>
+                <div id="uploadSection">
+                    <input type="file" id="timetableUpload" accept="image/*" class="fileInput">
+                    <div id="imagePreview"></div>
+                </div>
+            </div>
         </div>
 
         <div id="bottomDiv">

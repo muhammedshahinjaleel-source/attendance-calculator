@@ -1,3 +1,14 @@
+/* ===== COLOR PALETTE ===== */
+/* Primary Gold: #d1bf35 */
+/* Primary Blue: #284C60 */
+/* Secondary Blue: #3a5a70 */
+/* Primary Red: #8b1818 */
+/* Red Accent: #ce2222 */
+/* Dark Gray/Charcoal: #231F20 */
+/* Black: #000000 */
+/* White: #ffffff */
+/* ========================= */
+
 #heading{
     font-size: 2 rem;
     font-weight: 300;
@@ -10,7 +21,6 @@
     font-size: 1 rem;
     font-weight: 300;
     letter-spacing: 3px;
-
 }
 
 .links{
@@ -33,6 +43,93 @@ body{
     color: white;
     text-align: center;
     font-family: "Bitcount Grid Single";
+}
+
+/* Tab Navigation */
+#tabNavigation {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 2rem 0;
+    background-image: linear-gradient(to bottom, black, #231F20);
+}
+
+.tabButton {
+    padding: 12px 30px;
+    background-color: #284C60;
+    color: white;
+    border: 2px solid #3a5a70 ;
+    border-radius: 20px;
+    font-family: "Bitcount Grid Single";
+    font-size: 1rem;
+    font-weight: 450;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.tabButton:hover {
+    background-color: #3a5a70;
+    transform: scale(1.05);
+}
+
+.tabButton.active {
+    background-color: #d1bf35;
+    color: #8b1818;
+    font-weight: 600;
+}
+
+/* Tab Content */
+.tabContent {
+    display: none;
+}
+
+.tabContent.active {
+    display: block;
+}
+
+/* Timetable Tab Specific */
+#timetableDiv {
+    opacity: 0.85;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    width: 80%;
+    margin: 0 auto;
+    background-image: linear-gradient(to top, black, #231F20);
+    border-radius: 10px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#uploadSection {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+.fileInput {
+    padding: 1rem;
+    font-family: "Bitcount Grid Single";
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 2rem 0;
+}
+
+#imagePreview {
+    margin-top: 2rem;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#imagePreview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px rgba(209, 191, 53, 0.5);
 }
 
 .textBoxes{

@@ -1,79 +1,113 @@
-//static functions
+// Constants
+const MIN_CRITERIA = 75;
+const COLOR_WARNING = "#d1bf35";
+const COLOR_ERROR = "red";
+const COLOR_SUCCESS = "green";
+
+// DOM element cache
+const elements = {
+  displayP: document.getElementById("displayP"),
+  displayHN: document.getElementById("displayHN"),
+  displayHB: document.getElementById("displayHB"),
+};
+
+// Tab switching function
+function switchTab(tabName) {
+  const tabContents = document.querySelectorAll(".tabContent");
+  const tabButtons = document.querySelectorAll(".tabButton");
+  
+  // Hide all tabs
+  tabContents.forEach(tab => tab.classList.remove("active"));
+  tabButtons.forEach(btn => btn.classList.remove("active"));
+  
+  // Show selected tab
+  document.getElementById(tabName).classList.add("active");
+  event.target.classList.add("active");
+}
+
+// Image preview for timetable upload
+document.addEventListener("DOMContentLoaded", function() {
+  const fileInput = document.getElementById("timetableUpload");
+  if (fileInput) {
+    fileInput.addEventListener("change", function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const imagePreview = document.getElementById("imagePreview");
+          imagePreview.innerHTML = `<img src="${event.target.result}" alt="Timetable Preview">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+});
+
+// Static functions
 function attendancePercentage(totalHoursTaken, totalHoursAttended) {
-  let percentage = totalHoursAttended/totalHoursTaken*100;
-  return percentage;
+  return (totalHoursAttended / totalHoursTaken) * 100;
 }
 
 function bunkableHours(totalHours, totalHoursTaken, totalHoursAttended) {
-  let hoursNotAttended = totalHoursTaken-totalHoursAttended;
-  let totalBunkable = totalHours * 0.25;
-
-  let bunkableHours = totalBunkable - hoursNotAttended;
-  return bunkableHours;
+  const hoursNotAttended = totalHoursTaken - totalHoursAttended;
+  const totalBunkable = totalHours * 0.25;
+  return totalBunkable - hoursNotAttended;
 }
 
-function needHours(totalHours, totalHoursTaken,totalHoursAttended) {
-    let finalPercentage = 0
-    let hoursNeeded = 0
+function needHours(totalHours, totalHoursTaken, totalHoursAttended) {
+  let hoursNeeded = 0;
+  let finalPercentage = (totalHoursAttended / totalHoursTaken) * 100;
 
-    while (finalPercentage <= minCriteria && (totalHoursTaken + hoursNeeded) < totalHours) {
-        hoursNeeded += 1;
-        finalPercentage = (100 * (totalHoursAttended + hoursNeeded)) / (totalHoursTaken + hoursNeeded);
-        console.log(hoursNeeded, finalPercentage);
-    }
-    return hoursNeeded;
+  while (finalPercentage < MIN_CRITERIA && (totalHoursTaken + hoursNeeded) < totalHours) {
+    hoursNeeded++;
+    finalPercentage = (100 * (totalHoursAttended + hoursNeeded)) / (totalHoursTaken + hoursNeeded);
+  }
+  return hoursNeeded;
 }
 
-//dynamic functions
+// Dynamic function
 function calculate() {
-  let selectionValue = document.getElementById("totalVsLeft").value
-
-  let totalHoursTaken = Number(document.getElementById("totalHoursTaken").value);
-  let totalHoursAttended = Number(document.getElementById("totalHoursAttended").value);
-  let attendancePercentageResult = String(attendancePercentage(totalHoursTaken, totalHoursAttended));
-  let needHoursResult = 0
-
-
-  if (selectionValue == "totalKnown") {
-      var totalHours = Number(document.getElementById("knownValue").value);
-      var hoursLeft = totalHours-totalHoursTaken
-  }
-  else if (selectionValue == "leftKnown") {
-      var hoursLeft = Number(document.getElementById("knownValue").value);
-      var totalHours = hoursLeft + totalHoursTaken
+  const selectionValue = document.getElementById("totalVsLeft").value;
+  const totalHoursTaken = Number(document.getElementById("totalHoursTaken").value);
+  const totalHoursAttended = Number(document.getElementById("totalHoursAttended").value);
+  
+  let totalHours, hoursLeft;
+  
+  if (selectionValue === "totalKnown") {
+    totalHours = Number(document.getElementById("knownValue").value);
+    hoursLeft = totalHours - totalHoursTaken;
+  } else if (selectionValue === "leftKnown") {
+    hoursLeft = Number(document.getElementById("knownValue").value);
+    totalHours = hoursLeft + totalHoursTaken;
   }
 
+  const attendancePercentageResult = attendancePercentage(totalHoursTaken, totalHoursAttended);
+  const bunkableHoursResult = bunkableHours(totalHours, totalHoursTaken, totalHoursAttended);
 
-  let bunkableHoursResult = String(bunkableHours(totalHours, totalHoursTaken, totalHoursAttended));
+  // Update attendance percentage
+  elements.displayP.textContent = attendancePercentageResult.toFixed(2) + " %";
 
-
-  if (Number(attendancePercentageResult) < minCriteria) {
-    needHoursResult = needHours(totalHours, totalHoursTaken,totalHoursAttended);
-    if (needHoursResult < hoursLeft){
-        document.getElementById("displayHN").textContent = needHoursResult;
-        document.getElementById("displayHN").style.color = "#d1bf35";
+  // Update hours needed
+  if (attendancePercentageResult < MIN_CRITERIA) {
+    const hoursNeededResult = needHours(totalHours, totalHoursTaken, totalHoursAttended);
+    if (hoursNeededResult < hoursLeft) {
+      elements.displayHN.textContent = hoursNeededResult;
+      elements.displayHN.style.color = COLOR_WARNING;
+    } else {
+      elements.displayHN.textContent = "You're cooked :( ";
+      elements.displayHN.style.color = COLOR_ERROR;
     }
-    else{
-        document.getElementById("displayHN").textContent = "You're cooked :( ";
-        document.getElementById("displayHN").style.color = "red";
-    }
-  }
-  else{
-    document.getElementById("displayHN").textContent = "You're all set! :) ";
-    document.getElementById("displayHN").style.color = "green";
-
+  } else {
+    elements.displayHN.textContent = "You're all set! :) ";
+    elements.displayHN.style.color = COLOR_SUCCESS;
   }
 
-  document.getElementById("displayP").textContent = Number(attendancePercentageResult).toFixed(2) + " %";
-
-  if(Number(bunkableHoursResult) > 0){
-    document.getElementById("displayHB").textContent = Math.floor(Number(bunkableHoursResult));
-    document.getElementById("displayHB").style.color = "#d1bf35";
-  }
-  else{
-    document.getElementById("displayHB").textContent = "Don't even think about it :P";
-    document.getElementById("displayHB").style.color = "red";
+  // Update bunkable hours
+  if (bunkableHoursResult > 0) {
+    elements.displayHB.textContent = Math.floor(bunkableHoursResult);
+    elements.displayHB.style.color = COLOR_WARNING;
+  } else {
+    elements.displayHB.textContent = "Don't even think about it :P";
+    elements.displayHB.style.color = COLOR_ERROR;
   }
 }
-
-var minCriteria = 75
