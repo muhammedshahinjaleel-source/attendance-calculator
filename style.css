@@ -1,0 +1,638 @@
+/* ===== COLOR PALETTE ===== */
+/* Primary Gold: #d1bf35 */
+/* Primary Blue: #284C60 */
+/* Secondary Blue: #3a5a70 */
+/* Primary Red: #8b1818 */
+/* Red Accent: #ce2222 */
+/* Dark Gray/Charcoal: #231F20 */
+/* Black: #000000 */
+/* White: #ffffff */
+/* ========================= */
+
+#heading{
+    font-size: 2 rem;
+    font-weight: 300;
+    letter-spacing: 1rem;
+
+    text-shadow: 0px 0px 7px black; 
+}
+
+#credit{
+    font-size: 1 rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.links{
+    text-decoration: none;
+}
+
+#background-plate{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.9;
+}
+
+body{
+    background-color: black;
+    width: auto;
+    color: white;
+    text-align: center;
+    font-family: "Bitcount Grid Single";
+}
+
+/* Tab Navigation */
+#tabNavigation {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 2rem 0;
+    background-image: linear-gradient(to bottom, black, #231F20);
+}
+
+.tabButton {
+    padding: 12px 30px;
+    background-color: #284C60;
+    color: white;
+    border: 2px solid #3a5a70 ;
+    border-radius: 20px;
+    font-family: "Bitcount Grid Single";
+    font-size: 1rem;
+    font-weight: 450;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.tabButton:hover {
+    background-color: #3a5a70;
+    transform: scale(1.05);
+}
+
+.tabButton.active {
+    background-color: #d1bf35;
+    color: #8b1818;
+    font-weight: 600;
+}
+
+/* Tab Content */
+.tabContent {
+    display: none;
+}
+
+.tabContent.active {
+    display: block;
+}
+
+/* Timetable Tab Specific */
+#timetableDiv {
+    opacity: 0.85;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    width: 80%;
+    margin: 0 auto;
+    background-image: linear-gradient(to top, black, #231F20);
+    border-radius: 10px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#uploadSection {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+.drop-zone {
+    border: 3px dashed #d1bf35;
+    border-radius: 10px;
+    padding: 3rem 2rem;
+    background-color: rgba(40, 76, 96, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.drop-zone:hover {
+    background-color: rgba(40, 76, 96, 0.5);
+    border-color: #ffffff;
+    transform: scale(1.02);
+}
+
+.drop-zone.drag-over {
+    background-color: rgba(209, 191, 53, 0.2);
+    border-color: #d1bf35;
+    box-shadow: 0px 0px 20px rgba(209, 191, 53, 0.3);
+    transform: scale(1.05);
+}
+
+.drop-zone-content {
+    text-align: center;
+    pointer-events: none;
+}
+
+.drop-zone-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    color: #d1bf35;
+    opacity: 0.8;
+}
+
+.drop-zone-text {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.fileInput {
+    display: none;
+}
+
+#imagePreview {
+    margin-top: 2rem;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#imagePreview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px rgba(209, 191, 53, 0.5);
+}
+
+.textBoxes{
+    border-width: 1px;
+    border: 0;
+    background-color: #284C60;
+    border-radius: 16px;
+    height: 30px;
+    color: white;
+    text-align: center;
+    font-size: large;
+    font-family: "Bitcount Grid Single";
+    
+}
+
+/*Persian red: #B,B4430 , raisin black: #2,31F20 */
+
+/*old purple: 4,b2c74, old cyan: 2,94C60 */
+
+#mainForm{
+    background-image: linear-gradient(to bottom, black, #231F20);
+    width: 80%;
+    margin: 0 auto;
+
+    text-align: center;
+
+    font-size: large;
+    line-height: 5vh;
+    
+}
+
+input[type="text"]{
+    display: block;
+    margin: 0 auto;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+}
+fieldset{
+    border: 0;
+    
+}
+
+#totalVsLeft{
+    width: fit-content;
+    height: 4vh;
+
+    border-radius: 8px;
+    border: 0;
+    background-color:#284C60;
+    color: #ffffff;
+
+    font-size: 0.8rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Bitcount Grid Single";
+}
+
+#topDiv{
+    background-image: linear-gradient(to top,#8b1818, #000000);
+    /*background-color: #8b1818;*/
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+}
+
+#formDiv{
+    padding-top: 4vh;
+    opacity: 0.85;
+    width: auto;
+}
+
+#formTable{
+    width: auto;
+}
+
+#table1left{
+    text-align: right;
+}
+
+#table1center{
+    text-align: center;
+}
+
+#table1right{
+    text-align: left;
+}
+
+#table1bottom{
+    text-align: center;
+}
+
+#displayDiv{
+    opacity: 0.85;
+    padding-top: 40px;
+    width: 80%;
+    height: 38vh;
+    margin:0 auto;
+    
+    background-image: linear-gradient(to top, black, #8b1818);
+
+    text-align: center;
+
+    font-size: 1 rem;
+    line-height: 3vh;
+}
+
+
+#bottomDiv{
+    margin-top: 3vh;
+    padding-top: 1vh;
+
+    background-color: black;
+    width: 80vw;
+    height: fit-content;
+    margin: 0 auto;
+    color: white;
+
+    border: 3px solid white;
+    border-radius: 5%;
+    border-style: dotted;
+
+    text-align: center;
+
+
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 4vh;
+    letter-spacing: 10px;
+
+
+}
+
+hr{
+    border: 0.16rem;
+    border-style: dotted;
+}
+
+.note{
+    margin-top: 2%;
+    margin-bottom: 0;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 3vh;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1rem;
+    letter-spacing: 3px;
+}
+
+#note-sub-1{
+    margin-top: 0;
+    text-align: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 3vh;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+    letter-spacing: 3px;
+}
+
+
+.results{
+    color: #d1bf35;
+    text-shadow: 0px 0px 30px black;
+}
+#calculateButton{
+    background-color: #d1bf35;
+    border: 0;
+    width: 30vw;
+    height: 4vh;
+    border-radius: 20px;
+    margin: 0 auto;
+
+    text-align: center;
+    color: #ffffff;
+    font-family: "Bitcount Grid Single";
+    letter-spacing: 2px;
+    font-weight: 450;
+    text-shadow: 0px 0px 7px black;
+}
+
+#calculateButton:hover{
+
+    background-color: white;
+    color: #8b1818;
+
+    font-weight: 300;
+
+}
+
+.special{
+    color: #d1bf35;
+
+    font-weight: 400;
+    text-shadow: 0px 0px 7px black;
+}
+
+.bunkulatorRed{
+    color:#ce2222;
+
+    font-weight: 600;
+
+}
+
+/* ===== GEMINI TIMETABLE ANALYSIS STYLES ===== */
+
+.api-key-info {
+    background-color: rgba(58, 90, 112, 0.5);
+    border-left: 4px solid #d1bf35;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    max-width: 600px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.api-key-info a {
+    color: #d1bf35;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.api-key-info a:hover {
+    text-decoration: underline;
+}
+
+#analyzeButton, .analyze-button {
+    background-color: #d1bf35;
+    color: #000000;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-family: "Bitcount Grid Single";
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-shadow: none;
+}
+
+#analyzeButton:hover:not(:disabled), .analyze-button:hover:not(:disabled) {
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(209, 191, 53, 0.5);
+}
+
+#analyzeButton:disabled, .analyze-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.timetable-results {
+    background-color: rgba(40, 76, 96, 0.3);
+    border: 2px solid #d1bf35;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.results-header {
+    text-align: center;
+    border-bottom: 2px solid #d1bf35;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.results-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #d1bf35;
+    font-size: 1.5rem;
+}
+
+.semester-info, .total-hours {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.total-hours strong {
+    color: #d1bf35;
+    font-weight: 700;
+}
+
+.timetable-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.timetable-table thead {
+    background-color: rgba(209, 191, 53, 0.2);
+    border-bottom: 2px solid #d1bf35;
+}
+
+.timetable-table th {
+    padding: 1rem;
+    text-align: left;
+    color: #d1bf35;
+    font-weight: 600;
+    padding: 0.8rem;
+    background-color: rgba(209, 191, 53, 0.15);
+}
+
+.timetable-table td {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(209, 191, 53, 0.2);
+    color: #ffffff;
+}
+
+.timetable-table tbody tr:hover {
+    background-color: rgba(209, 191, 53, 0.1);
+}
+
+.timetable-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.parsing-errors {
+    background-color: rgba(206, 34, 34, 0.2);
+    border: 2px solid #ce2222;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+}
+
+.parsing-errors h4 {
+    color: #ce2222;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.parsing-errors ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #ffffff;
+}
+
+.parsing-errors li {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+.timetable-notes {
+    background-color: rgba(139, 24, 24, 0.1);
+    border-left: 4px solid #d1bf35;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 5px;
+}
+
+.timetable-notes p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(209, 191, 53, 0.3);
+}
+
+.use-schedule-button, .clear-storage-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-family: "Bitcount Grid Single";
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.use-schedule-button {
+    background-color: #d1bf35;
+    color: #000000;
+}
+
+.use-schedule-button:hover {
+    background-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(209, 191, 53, 0.5);
+}
+
+.clear-storage-button {
+    background-color: rgba(206, 34, 34, 0.6);
+    color: #ffffff;
+}
+
+.clear-storage-button:hover {
+    background-color: #ce2222;
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(206, 34, 34, 0.5);
+}
+
+.error-message {
+    color: #ce2222;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(206, 34, 34, 0.2);
+    border-radius: 5px;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.success-message {
+    color: #00cc00;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 204, 0, 0.2);
+    border-radius: 5px;
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+}
+
+/* Responsive design for timetable */
+@media (max-width: 768px) {
+    .timetable-table {
+        font-size: 0.85rem;
+    }
+    
+    .timetable-table th, .timetable-table td {
+        padding: 0.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .use-schedule-button, .clear-storage-button {
+        width: 100%;
+    }
+    
+    .timetable-results {
+        padding: 1rem;
+    }
+}
